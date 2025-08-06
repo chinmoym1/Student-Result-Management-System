@@ -1,0 +1,103 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.bak
+*.obj
+*.pdb
+*.orig
+*.log
+*.ncb
+*.scc
+*.vssscc
+*.vsscc
+*.vspscc
+*.tlog
+*.trx
+*.webtest
+*.testsettings
+*.cache # Added to catch more cache files
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.exe
+*.dll
+*.com
+*.lib
+*.out
+*.exp
+*.ilk
+*.aps
+*.manifest
+*.res
+*.resources
+*.designer.cs
+*.publish
+*.zip
+*.nupkg
+*.tmp
+*.temp
+*.coverage # Visual Studio code coverage results
+*.coveragexml # Visual Studio code coverage results
+
+**/bin/
+# NuGet
+# The packages folder can be ignored because of Package Restore
+**/packages/
+*.nuget.log
+*.nuget.props # NuGet v3's project.json files produces more ignorable files
+*.nuget.targets # NuGet v3's project.json files produces more ignorable files
+project.lock.json # Used in conjunction with project.json (NuGet v3)
+project.assets.json # Used in conjunction with the PackageReference format (NuGet v4 and .NET Core)
+
+# Resharper
+*.resharper
+*.dotSettings
+_ReSharper.*/
+
+# Rider
+.idea/
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml # Added for NCrunch
+nCrunchTemp_* # Added for NCrunch
+
+# StyleCop
+StyleCop.Cache
+
+# Visual Studio Code
+.vscode/
+
+# xUnit.net
+*.xunit.runner.json
+
+# Azure Tools
+*.publishsettings
+*.azurePubxml
+
+# SQL Server Management Studio
+*.ssmssln
+
+# Local settings
+LocalSettings.xml
+
+# ASP.NET Core specific
+appsettings.Development.json
+appsettings.Staging.json
+appsettings.Production.json
+appsettings.*.json # Catch other environment-specific appsettings files
+wwwroot/lib/
+wwwroot/js/
+wwwroot/css/
+wwwroot/images/
+wwwroot/fonts/
+wwwroot/data/
+
+# General
+Thumbs.db
+Desktop.ini
+.DS_Store

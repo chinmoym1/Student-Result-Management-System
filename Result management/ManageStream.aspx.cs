@@ -1,0 +1,128 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Result_management
+{
+    public partial class ManageStream : System.Web.UI.Page
+    {
+        //SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-PVQUJJN; Initial Catalog=SRMS; Integrated Security=true");
+        SqlConnection conn = new SqlConnection(@"Data Source = LAPTOP-EKEB5SP5\SQLEXPRESS; Initial Catalog = SRMS; Integrated Security = True");
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            String d = DateTime.Now.ToString();
+            if (!this.IsPostBack)
+            {
+                this.getdata();
+                Panel1.Visible = false;
+            }
+        }
+        public void getdata()
+        {
+            SqlCommand cmd = new SqlCommand("Select * from tblclass", conn);
+            conn.Open();
+            DataSet dt = new DataSet();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+            conn.Close();
+        }
+
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Panel1.Visible = true;
+            conn.Close();
+            conn.Open();
+            SqlDataAdapter da = new SqlDataAdapter("select * from tblclass where ID like'" + TextBox1.Text + "%'", conn);
+            DataTable dt= new DataTable();
+            da.Fill(dt);
+            GridView1.DataSource= dt;
+            GridView1.DataBind();
+            conn.Close();
+
+           // TextBox1.Text=String.Empty;
+        }
+
+         
+        //protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
+        //{
+        //    Panel1.Visible = true;
+        //    GridViewRow row = GridView1.SelectedRow;
+        //    Label4.Text = row.Cells[1].Text;
+        //    TextBox2.Text = row.Cells[2].Text;
+        //    TextBox3.Text = row.Cells[3].Text;
+        //    TextBox4.Text = row.Cells[4].Text;
+        //}
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Panel1.Visible = true;
+            GridViewRow row = GridView1.SelectedRow;
+            Label4.Text = row.Cells[1].Text;
+            TextBox2.Text = row.Cells[2].Text;
+            TextBox3.Text = row.Cells[3].Text;
+            TextBox4.Text = row.Cells[4].Text;
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            conn.Close();
+            using (SqlConnection con1 = new SqlConnection(@"Data Source=LAPTOP-EKEB5SP5\SQLEXPRESS; Initial Catalog=SRMS; Integrated Security=true"))
+            {
+                using (SqlCommand cmd=new SqlCommand("Update tblclass set StreamName=@Name,Semester=@Sem,CreationDate=@Cdate where ID=@ID"))
+                {
+                    cmd.Parameters.AddWithValue("@Name", TextBox2.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Sem", TextBox3.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Cdate", TextBox4.Text.Trim());
+                    cmd.Parameters.AddWithValue("@ID", Label4.Text.Trim());
+                    cmd.Connection= con1;
+                    con1.Open();
+
+                    int i = cmd.ExecuteNonQuery();
+                    if (i > 0)
+                    {
+                        Response.Write("<script>alert('Record Updated succesfully')</script>");
+                        getdata();
+                        Panel1.Visible=false;
+                        conn.Close();
+                    }
+                    else
+                    {
+                        Label4.Text = "Record not Updated.... Try Again";
+                        Label4.ForeColor=System.Drawing.Color.Red;
+                    }
+                }
+            }
+
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("delete from tblclass where ID=@ID", conn);
+            cmd.Parameters.AddWithValue("@ID", Label4.Text);
+            int i = cmd.ExecuteNonQuery();
+            if(i > 0)
+            {    
+                conn.Close();
+                Response.Write("<script>alert('Record Deleted succesfully')</script>");
+                getdata();
+                Panel1.Visible = false;
+            }
+            else
+            {
+                Label4.Text = "Record not deleted.... Try Again";
+                Label4.ForeColor= System.Drawing.Color.Red;
+            }
+            conn.Close();
+        }
+    }
+}

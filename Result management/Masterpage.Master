@@ -1,0 +1,177 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Masterpage.master.cs" Inherits="Result_management.Masterpage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            /*  background-color: #666;
+            padding: 20px;
+            font-size: 22px;*/
+            text-align: center;
+            color: black;
+            background-color: #b3b3b3;
+        }
+
+        nav {
+            float: left;
+            width: 19%;
+            height: 700px;
+            background: #131111cf;
+            padding: 20px;
+        }
+
+            nav ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+        article {
+            float: left;
+            padding: 20px;
+            width: 81%;
+            background-color: #f1f1f1;
+            height: 700px;
+        }
+
+        section::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        footer {
+            background-color: #777;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            width: 100%;
+        }
+
+        ul li a {
+            /*            border:inset;
+           border-radius:1px;
+           border-color: #fffb0c;
+           background-color: #7996cc;*/
+            color: #e3e3e3f2;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+            width: 230px;
+        }
+
+        @media(max-width:600px0) {
+            nav, article {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        #Label1 {
+            color: black;
+        }
+
+        #btn_logout{
+/*            text-align: right;
+            margin-left: 91%;
+*/            text-decoration: none;
+            color: #df1616;
+            font-size: 18px;
+            /*  border-block: burlywood;
+            border-radius: 6px;
+            border-style: solid;
+            background-color: aqua;*/
+        }
+        h2{
+            margin-top:0px;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> 
+    <link rel="stylesheet" href="/resources/demos/style.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>  
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+
+
+<asp:ContentPlaceHolder ID="head" runat="server">
+</asp:ContentPlaceHolder>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <header>
+                <h2>Student Result Management System</h2>
+
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+
+                <span><i class='fa fa-sign-out' style='font-size: 24px; color: red; margin-left:87%;margin-bottom:2%;'></i>
+                    <asp:Button ID="btn_logout" runat="server" OnClick="btn_logout_Click" Text="Logout" />
+                  <%--  <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton>--%>
+                    </span>
+
+            </header>
+
+            <section>
+                <nav>
+                    <ul>
+                        <li><a href="dashboard.aspx">Dashboard</a></li>
+                        <li><a href="CreateStream.aspx">Create Stream</a></li>
+                        <li><a href="ManageStream.aspx">Manage Stream</a></li>
+                        <li><a href="CreateSubject.aspx">Create Subject</a></li>
+                        <li><a href="ManageSub.aspx">Manage Subject</a></li>
+                        <li><a href="Subjectcomb.aspx">Add Subject Combination</a></li>
+                        <li><a href="ManageComb.aspx">Manage Subject Combination</a></li>
+                        <%--<li><a href="addstudent.aspx">add student</a></li>--%>
+                        <li><a href="addteststud.aspx">Add Student</a></li>
+                        <li><a href="manageteststud.aspx">Manage Student</a></li>
+                        <%--<li><a href="ManageStudent.aspx">Manage Student</a></li>--%>
+                        <li><a href="Res1.aspx">Add Result</a></li>
+                        <li><a href="ManageResult.aspx">Student Result List</a></li>
+                        <%--<li><a href="TestRes1b.aspx">test Result</a></li>--%>
+                        <%--<li><a href="#">Change Admin Password</a></li>--%>
+                    </ul>
+                </nav>
+                <article>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </article>
+            </section>
+
+
+            <footer>
+                <p>
+                    © 2023 Copyright by SRMS. All Rights Reserved.
+                </p>
+            </footer>
+
+
+
+
+
+
+
+        </div>
+    </form>
+</body>
+</html>
