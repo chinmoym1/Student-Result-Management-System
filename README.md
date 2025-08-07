@@ -2,6 +2,9 @@
 
 This project is a **Student Result Management System** developed using **ASP.NET** with **C#**, **Visual Studio 2022**, and **Microsoft SQL Server**. It is designed to efficiently manage student registration, result entry, and result viewing for educational institutions.
 
+<img width="1874" height="1072" alt="Screenshot 2025-08-07 122438" src="https://github.com/user-attachments/assets/35c1d7f2-ecb5-4c2a-9146-fa4cee904ec5" />
+<img width="1909" height="1023" alt="image" src="https://github.com/user-attachments/assets/6afc61ba-c13e-49ab-bf09-4dc51bf2899c" />
+
 ## Features
 
 - **Student Registration**: Allows students to register with personal details.
