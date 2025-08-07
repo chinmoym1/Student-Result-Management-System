@@ -27,25 +27,45 @@
             border-radius: 9999px;
             transition: width 0.5s ease-in-out;
         }
+
+        /* --- Print-Specific Styles --- */
+        @media print {
+            body {
+                background-color: white !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-teal-50 via-gray-100 to-teal-100 text-gray-800 antialiased py-16">
+<body class="bg-gradient-to-br from-teal-50 via-gray-100 to-teal-100 text-gray-800 antialiased">
     <form id="form1" runat="server">
-        <div class="container mx-auto px-4 w-full max-w-4xl">
-            <!-- Header Section -->
-            <div class="bg-white p-6 rounded-t-xl shadow-lg border-b-2 border-teal-600">
-                <div class="flex items-center space-x-4">
-                    <!-- Placeholder Logo for University -->
-                    <img src="https://placehold.co/104x80/134E4A/fff?text=Logo" alt="University Logo" class="h-20 w-auto">
+        <!-- Navigation Bar -->
+        <nav class="no-print navbar navbar-expand-lg navbar-dark bg-white shadow-sm sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+                <a class="text-2xl font-bold text-teal-600" href="default.aspx">SRMS</a>
+                <div class="flex items-center space-x-6">
+                    <a href="default.aspx" class="text-gray-600 hover:text-teal-600 transition-colors duration-200 font-medium">Home</a>
+                    <a href="TestCheckResult.aspx" class="text-gray-600 hover:text-teal-600 transition-colors duration-200 font-medium">Result</a>
+                    <a href="admin_login.aspx" class="text-white bg-teal-600 hover:bg-teal-700 font-semibold py-2 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">Admin Login</a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container mx-auto px-4 w-full max-w-4xl py-16">
+            <!-- Main Content Card -->
+            <div id="result-content" class="bg-white p-8 rounded-xl shadow-lg">
+                <!-- Header Section -->
+                <div class="flex items-center space-x-4 border-b-2 border-teal-600 pb-4 mb-6">
+                    <img src="images/logo_bbmku.png" alt="University Logo" class="h-20 w-auto">
                     <div>
                         <h1 class="text-xl md:text-2xl font-bold text-gray-800">Student Result Management System</h1>
                         <h2 class="text-xl md:text-2xl font-bold text-teal-700">Binod Bihari Mahto Koyalanchal University, Dhanbad</h2>
                         <h3 class="text-lg text-gray-600 mt-1">Semester 1 Examination</h3>
                     </div>
                 </div>
-            </div>
-
-            <div class="bg-white p-8 rounded-b-xl shadow-lg mt-0">
+    
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-medium text-gray-700 mb-6">
                     <div>
                         Roll No: <asp:Label ID="lblroll" runat="server" Text="" CssClass="font-normal text-gray-900"></asp:Label>
@@ -57,7 +77,7 @@
                         Stream: <asp:Label ID="lblstream" runat="server" Text="" CssClass="font-normal text-gray-900"></asp:Label>
                     </div>
                 </div>
-
+    
                 <!-- Final Result Section (Prominently displayed) -->
                 <div class="bg-green-100 p-4 rounded-lg border-2 border-green-400 mb-6">
                     <h4 class="text-lg text-green-800 font-bold">Final Status: <asp:Label ID="lblFinalStatus" runat="server" Text="PASS" CssClass="text-2xl font-extrabold ml-2"></asp:Label></h4>
@@ -78,7 +98,6 @@
                                 <td class="py-3 px-6 text-sm text-gray-900 flex items-center space-x-2">
                                     <asp:Label ID="lblcore1" runat="server" Text=""></asp:Label>
                                     <div class="progress-bar-container w-24 sm:w-32">
-                                        <!-- The width style will be set dynamically in your C# code-behind -->
                                         <div class="progress-bar bg-teal-500" style="width: <%= core1Percentage %>%"></div>
                                     </div>
                                 </td>
@@ -128,6 +147,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Buttons Section (hidden in print view) -->
+            <div class="no-print mt-6 flex justify-center space-x-4">
+                <asp:Button ID="btnClose" runat="server" Text="Close Result" OnClick="btnClose_Click" CssClass="bg-gray-300 text-gray-800 font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-400 transition-colors duration-200" />
+                <button type="button" onclick="window.print()" class="bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-teal-700 transition-colors duration-200">Download PDF</button>
             </div>
         </div>
     </form>

@@ -38,6 +38,16 @@ namespace Result_management
                 }
             }
         }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            // Clear the session variables related to the result
+            Session.Remove("roll");
+            Session.Remove("Stream");
+
+            // Redirect the user back to the default homepage
+            Response.Redirect("default.aspx");
+        }
+
 
         public void getdata()
         {
