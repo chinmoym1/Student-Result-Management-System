@@ -1,110 +1,135 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestStudentResult1.aspx.cs" Inherits="Result_management.TestStudentResult1" %>
 
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head runat="server">
-    <link rel="stylesheet" href="CSS/StudentResult1.css" />
-    <title>Semester1 Result</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+    
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Use Inter font for a modern look -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styling for the progress bar */
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-teal-50 via-gray-100 to-teal-100 text-gray-800 antialiased py-16">
     <form id="form1" runat="server">
-        <asp:Panel ID="Panel1" runat="server">
-   <div class="heading" align="center">Student Result Management System</div>
+        <div class="container mx-auto px-4 w-full max-w-4xl">
+            <!-- Header Section -->
+            <div class="bg-white p-6 rounded-t-xl shadow-lg border-b-2 border-teal-600">
+                <div class="flex items-center space-x-4">
+                    <!-- Placeholder Logo for University -->
+                    <img src="https://placehold.co/104x80/134E4A/fff?text=Logo" alt="University Logo" class="h-20 w-auto">
+                    <div>
+                        <h1 class="text-xl md:text-2xl font-bold text-gray-800">Student Result Management System</h1>
+                        <h2 class="text-xl md:text-2xl font-bold text-teal-700">Binod Bihari Mahto Koyalanchal University, Dhanbad</h2>
+                        <h3 class="text-lg text-gray-600 mt-1">Semester 1 Examination</h3>
+                    </div>
+                </div>
+            </div>
 
-     <div class="chead" style="background-color:#057C7C  !important">
-	<div class="panel-heading" style="padding-bottom:17px;">
-    <div style="float:left;"><img src="images/logo_bbmku.png"  style="height:80px;width:104px;" /></div>
-    <div style="text-align:center;font-size:21px;text-decoration: underline; font-weight:bold;color:#fff !important;margin-top:19px;">Binod Bihari Mahto Koyalanchal University, Dhanbad</div> 
-	<h4 style="text-align:center;color:#fff !important;">Result</h4>
-	<!-- ngIf: form.student_type -->
-	<!-- ngIf: form.course=='UG' -->
-    <div ng-if="form.course=='UG'" style="text-align:center;margin-top:-7px;margin-left: 5%;color:#fff !important;font-size:15px" class="ng-scope">
-	<span style="color:#fff !important;" class="ng-binding">Bachelor of Computer Application (B.C.A) CBCS , </span>
-	<span style="color:#fff !important;" class="ng-binding">Semester - I  </span>
-	<!-- <span style="color:#fff !important;"> Examination {{form.held_month_1}} {{form.held_year_1}}</span> -->
-	<!-- ngIf: (form.remarks!='RGX') -->
-    <span style="color:#fff !important;" ng-if="(form.remarks!='RGX')" class="ng-binding ng-scope">( 2020-23 ) Examination </span>
-    <!-- end ngIf: (form.remarks!='RGX') --><!-- ngIf: (form.session=='2015-18' && form.semester=='IV') || (form.session=='2018-21' && form.semester=='III') || (form.session=='2019-22' && form.semester=='I') || (form.remarks!='RGX' && form.semester!='V') -->
-    <span ng-if="(form.session=='2015-18' &amp;&amp; form.semester=='IV') || (form.session=='2018-21' &amp;&amp; form.semester=='III') || (form.session=='2019-22' &amp;&amp; form.semester=='I') || (form.remarks!='RGX' &amp;&amp; form.semester!='V')" class="ng-scope"></span>
-    <!-- end ngIf: (form.session=='2015-18' && form.semester=='IV') || (form.session=='2018-21' && form.semester=='III') || (form.session=='2019-22' && form.semester=='I') || (form.remarks!='RGX' && form.semester!='V') -->
-	<!-- ngIf: (form.remarks=='RGX') -->		
-	</div><!-- end ngIf: form.course=='UG' -->
-	</div>
-	</div>
+            <div class="bg-white p-8 rounded-b-xl shadow-lg mt-0">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm font-medium text-gray-700 mb-6">
+                    <div>
+                        Roll No: <asp:Label ID="lblroll" runat="server" Text="" CssClass="font-normal text-gray-900"></asp:Label>
+                    </div>
+                    <div>
+                        Name: <asp:Label ID="lblname" runat="server" Text="" CssClass="font-normal text-gray-900"></asp:Label>
+                    </div>
+                    <div>
+                        Stream: <asp:Label ID="lblstream" runat="server" Text="" CssClass="font-normal text-gray-900"></asp:Label>
+                    </div>
+                </div>
 
-            <table>
-                 <tr>
-                    <th></th>
-                    <th></th>
-                     
-                </tr>
-                 <tr>
-                    <td>Roll No</td>
-                    <td>
-                        <asp:Label ID="lblroll" runat="server" Text="" Font-Bold="True" ForeColor="Black" Font-Size="Medium"></asp:Label></td>
-                 </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><asp:Label ID="lblname" runat="server" Text="" Font-Bold="True" ForeColor="Black" Font-Size="Medium"></asp:Label></td>
-                    
-                </tr>
-                <tr>
-                    <td>Stream</td>
-                   <td> <asp:Label ID="lblstream" runat="server" Text="" Font-Bold="True" ForeColor="Black" Font-Size="Medium"></asp:Label></td>                  
-                    
-                </tr>
-                <tr>
-                    <th>Subject Name</th>
-                    <th>Marks</th>
-                    
-                </tr>
-               <tr>
-                    <td>Core-I:Programming Fundamentals using C/C++</td>
-                    <td>
-                        <asp:Label ID="lblcore1" runat="server" Text=""></asp:Label></td>                    
-                    
-                    
-                </tr>
-                 <tr>
-                    <td>Core-II:Computer System Architecture</td>
-                   <td>
-                       <asp:Label ID="lblcore2" runat="server" Text=""></asp:Label></td>
-                   
-                    
-                </tr>
-                 <tr>
-                     <td>AECC-1:Environmental Science</td>
-                     <td>
-                         <asp:Label ID="lblaecc1" runat="server" Text=""></asp:Label></td>
-                  
-                  
-                </tr>
-                 <tr>
-                     <td>GE-1:General Elective</td>
-                    <td>
-                        <asp:Label ID="lblge1" runat="server" Text=""></asp:Label></td>
-                   
-                </tr>
-                <tr>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>Total Marks</td>
-                    <td>
-                        <asp:Label ID="lbltotal" runat="server" Text=""></asp:Label></td>
-                </tr>
-                <tr>
-                    <td>Percentage</td>
-                    <td>
-                        <asp:Label ID="lblper" runat="server" Text=""></asp:Label></td> 
-                </tr>
-               
+                <!-- Final Result Section (Prominently displayed) -->
+                <div class="bg-green-100 p-4 rounded-lg border-2 border-green-400 mb-6">
+                    <h4 class="text-lg text-green-800 font-bold">Final Status: <asp:Label ID="lblFinalStatus" runat="server" Text="PASS" CssClass="text-2xl font-extrabold ml-2"></asp:Label></h4>
+                </div>
+                
+                <!-- Marks Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden border border-gray-200">
+                        <thead>
+                            <tr class="bg-gray-100 border-b border-gray-200">
+                                <th class="py-3 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Subject Name</th>
+                                <th class="py-3 px-6 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-1/4">Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="bg-white even:bg-gray-50">
+                                <td class="py-3 px-6 text-sm text-gray-900 font-bold">Core-I: Programming Fundamentals using C/C++</td>
+                                <td class="py-3 px-6 text-sm text-gray-900 flex items-center space-x-2">
+                                    <asp:Label ID="lblcore1" runat="server" Text=""></asp:Label>
+                                    <div class="progress-bar-container w-24 sm:w-32">
+                                        <!-- The width style will be set dynamically in your C# code-behind -->
+                                        <div class="progress-bar bg-teal-500" style="width: <%= core1Percentage %>%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bg-white even:bg-gray-50">
+                                <td class="py-3 px-6 text-sm text-gray-900 font-bold">Core-II: Computer System Architecture</td>
+                                <td class="py-3 px-6 text-sm text-gray-900 flex items-center space-x-2">
+                                    <asp:Label ID="lblcore2" runat="server" Text=""></asp:Label>
+                                    <div class="progress-bar-container w-24 sm:w-32">
+                                        <div class="progress-bar bg-teal-500" style="width: <%= core2Percentage %>%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bg-white even:bg-gray-50">
+                                <td class="py-3 px-6 text-sm text-gray-900 font-bold">AECC-1: Environmental Science</td>
+                                <td class="py-3 px-6 text-sm text-gray-900 flex items-center space-x-2">
+                                    <asp:Label ID="lblaecc1" runat="server" Text=""></asp:Label>
+                                    <div class="progress-bar-container w-24 sm:w-32">
+                                        <div class="progress-bar bg-teal-500" style="width: <%= aecc1Percentage %>%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="bg-white even:bg-gray-50">
+                                <td class="py-3 px-6 text-sm text-gray-900 font-bold">GE-1: General Elective</td>
+                                <td class="py-3 px-6 text-sm text-gray-900 flex items-center space-x-2">
+                                    <asp:Label ID="lblge1" runat="server" Text=""></asp:Label>
+                                    <div class="progress-bar-container w-24 sm:w-32">
+                                        <div class="progress-bar bg-teal-500" style="width: <%= ge1Percentage %>%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            </table>
-    </asp:Panel>
-
+                <!-- Summary Section -->
+                <div class="bg-teal-50 p-4 rounded-lg border-2 border-teal-200 font-bold">
+                    <h4 class="text-xl text-teal-800 mb-2">Final Result</h4>
+                    <div class="flex flex-col md:flex-row justify-between items-center text-sm md:text-base text-gray-800">
+                        <div class="flex items-center space-x-2">
+                            <span>Total Marks:</span>
+                            <asp:Label ID="lbltotal" runat="server" Text="" CssClass="text-teal-700 text-xl"></asp:Label>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span>Percentage:</span>
+                            <asp:Label ID="lblper" runat="server" Text="" CssClass="text-teal-700 text-xl"></asp:Label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </body>
 </html>

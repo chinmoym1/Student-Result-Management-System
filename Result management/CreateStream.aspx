@@ -1,90 +1,37 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="CreateStream.aspx.cs" Inherits="Result_management.CreateStream" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .style1 {
-            width: 50%;
-            height: 40%;
-            background-color: #989633;
-            margin-left: 20%;
-            margin-top: 5%;
-        }
-
-        .row1 {
-            margin-bottom: 20px;
-            text-align: justify-all;
-        }
-
-        .row2 {
-            text-align: justify-all;
-            margin-bottom: 20px;
-        }
-
-        .row3 {
-            margin-left: 10px;
-        }
-
-        #ContentPlaceHolder1_Label1 {
-            margin-left: 8%;
-            padding: 2%;
-            font-weight: bold;
-            color: #4d1923;
-            /* margin-top: 4%;*/
-            position: absolute;
-        }
-
-        #ContentPlaceHolder1_Label2 {
-            margin-left: 8%;
-            padding: 2%;
-            font-weight: bold;
-            color: #4d1923;
-            position: absolute;
-            margin-top: 4%;
-        }
-
-        #ContentPlaceHolder1_TextBox1 {
-            position: absolute;
-            margin-top: 2%;
-            margin-left: 18%;
-        }
-
-
-        #ContentPlaceHolder1_TextBox2 {
-            margin-left: 18%;
-            position: absolute;
-            margin-top: 6%;
-        }
-
-        #ContentPlaceHolder1_Button1 {
-            margin-left: 17%;
-            position: absolute;
-            margin-top: 10%;
-            color: #3e26e1;
-            font-weight: bold;
-            width: 6%;
-        }
-
-        h3 {
-            margin-left: 28%;
-        }
-    </style>
+    <!-- No custom styles needed here, as Tailwind CSS handles the design -->
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="style1">
-        <h3>Create Stream/Course</h3>
-        <div class="row1">
-            <asp:Label ID="Label1" runat="server" Text="StreamName"></asp:Label>
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        </div>
-        <div class="row2">
-            <asp:Label ID="Label2" runat="server" Text="Semester"></asp:Label>
-            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-        </div>
-        <div class="row3">
-            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+    <div class="flex items-center justify-center py-16">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg space-y-6">
+            <!-- Form Heading -->
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-teal-800">Create Stream / Course</h2>
+                <p class="text-gray-600 mt-2">Enter the details for a new stream and its semesters.</p>
+            </div>
+            
+            <!-- Form Fields -->
+            <div class="space-y-4">
+                <!-- Stream Name Input -->
+                <div>
+                    <asp:Label ID="Label1" runat="server" Text="Stream Name" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200" placeholder="e.g., Computer Science"></asp:TextBox>
+                </div>
+                
+                <!-- Semester Input -->
+                <div>
+                    <asp:Label ID="Label2" runat="server" Text="Semester" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:TextBox ID="TextBox2" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200" placeholder="e.g., 3"></asp:TextBox>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" CssClass="w-full bg-teal-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+            </div>
         </div>
     </div>
-
-
-
 </asp:Content>

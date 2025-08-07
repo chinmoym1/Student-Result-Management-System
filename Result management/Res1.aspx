@@ -1,75 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="Res1.aspx.cs" Inherits="Result_management.Res1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .style1 {
-            margin-top: 120px;
-            margin-left: 50px;
-            
-        }
-         #ContentPlaceHolder1_Button1{
-            height: 40px;
-        }
-
-        #ContentPlaceHolder1_Button2 {
-            margin-left: 100px;
-            height: 40px;
-        }
-
-        #ContentPlaceHolder1_Button3 {
-            margin-left: 100px;
-            height: 40px;
-        }
-         #ContentPlaceHolder1_Button4 {
-            margin-top:100px;
-            height: 40px;
-        }
-        
-        #ContentPlaceHolder1_Button5 {
-            margin-left: 100px;
-            margin-top:100px;
-            height: 40px;
-        }
-        #ContentPlaceHolder1_Button6 {
-            margin-left: 100px;
-            margin-top:100px;
-            height: 40px;
-        }
-   </style>
-
-
-
+    <!-- No custom styles needed here, as Tailwind CSS handles the design -->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Select Semester</h2>
-
-
-    <div>
-        <table class="style1">
-            <tr></tr>
+    <div class="flex items-center justify-center py-16">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-2xl space-y-8 text-center">
+            <!-- Page Heading -->
+            <div>
+                <h2 class="text-3xl font-extrabold text-teal-800">Select Semester</h2>
+                <p class="text-gray-600 mt-2">Choose a semester to add student results.</p>
+            </div>
             
-            <tr>
-                <td>
-                    <asp:Button ID="Button1" runat="server" Text="Semester 1" ForeColor="#9999FF" Font-Bold="True" OnClick="Button1_Click" />
-                </td>
-                <td>
-                     <asp:Button ID="Button2" runat="server" Text="Semester 2" ForeColor="#9999FF"  Font-Bold="True"/>
-                </td>
-                <td>
-                     <asp:Button ID="Button3" runat="server" Text="Semester 3" ForeColor="#9999FF"  Font-Bold="True" />
-                </td>
-                
-            </tr>
-            <tr>
-                <td> 
-                    <asp:Button ID="Button4" runat="server" Text="Semester 4" ForeColor="#9999FF"  Font-Bold="True" />
-                </td>
-                <td>
-                 <asp:Button ID="Button5" runat="server" Text="Semester 5"  ForeColor="#9999FF"  Font-Bold="True"/>
-                 </td>
-                <td> 
-                    <asp:Button ID="Button6" runat="server" Text="Semester 6" ForeColor="#9999FF"  Font-Bold="True" />
-                </td>
-              </tr>
-        </table>
+            <!-- Semester Buttons Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <asp:Button ID="Button1" runat="server" Text="Semester 1" ForeColor="white" Font-Bold="True" OnClick="Button1_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+                <asp:Button ID="Button2" runat="server" Text="Semester 2" ForeColor="white" Font-Bold="True" OnClick="Button2_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+                <asp:Button ID="Button3" runat="server" Text="Semester 3" ForeColor="white" Font-Bold="True" OnClick="Button3_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+                <asp:Button ID="Button4" runat="server" Text="Semester 4" ForeColor="white" Font-Bold="True" OnClick="Button4_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+                <asp:Button ID="Button5" runat="server" Text="Semester 5" ForeColor="white" Font-Bold="True" OnClick="Button5_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+                <asp:Button ID="Button6" runat="server" Text="Semester 6" ForeColor="white" Font-Bold="True" OnClick="Button6_Click" CssClass="bg-teal-600 font-semibold py-4 px-6 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+            </div>
+        </div>
     </div>
 </asp:Content>

@@ -1,177 +1,146 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Masterpage.master.cs" Inherits="Result_management.Masterpage" %>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head runat="server">
-    <title>Dashboard</title>
+    <title>SRMS Admin Dashboard</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-
+    
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Use Inter font for a modern look -->
     <style>
         body {
-            margin: 0;
-            padding: 0;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        header {
-            /*  background-color: #666;
-            padding: 20px;
-            font-size: 22px;*/
-            text-align: center;
-            color: black;
-            background-color: #b3b3b3;
-        }
-
-        nav {
-            float: left;
-            width: 19%;
-            height: 700px;
-            background: #131111cf;
-            padding: 20px;
-        }
-
-            nav ul {
-                list-style-type: none;
-                padding: 0;
-            }
-
-        article {
-            float: left;
-            padding: 20px;
-            width: 81%;
-            background-color: #f1f1f1;
-            height: 700px;
-        }
-
-        section::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        footer {
-            background-color: #777;
-            padding: 30px;
-            text-align: center;
-            color: white;
-            width: 100%;
-        }
-
-        ul li a {
-            /*            border:inset;
-           border-radius:1px;
-           border-color: #fffb0c;
-           background-color: #7996cc;*/
-            color: #e3e3e3f2;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        ul li {
-            margin-bottom: 20px;
-            width: 230px;
-        }
-
-        @media(max-width:600px0) {
-            nav, article {
-                width: 100%;
-                height: auto;
-            }
-        }
-
-        #Label1 {
-            color: black;
-        }
-
-        #btn_logout{
-/*            text-align: right;
-            margin-left: 91%;
-*/            text-decoration: none;
-            color: #df1616;
-            font-size: 18px;
-            /*  border-block: burlywood;
-            border-radius: 6px;
-            border-style: solid;
-            background-color: aqua;*/
-        }
-        h2{
-            margin-top:0px;
+            font-family: 'Inter', sans-serif;
         }
     </style>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"> 
-    <link rel="stylesheet" href="/resources/demos/style.css">
-      <script src="https://code.jquery.com/jquery-3.6.0.js"></script>  
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 
+<body class="bg-gray-100 text-gray-800 antialiased min-h-screen flex flex-col">
+    <form id="form1" runat="server" class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+            <!-- Title, Logo, and Sidebar Toggle -->
+            <div class="flex items-center space-x-4">
+                <button id="sidebar-toggle" type="button" class="md:hidden text-gray-500 hover:text-teal-600 transition-colors duration-200">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+                <a href="dashboard.aspx" class="text-2xl font-bold text-teal-600">SRMS Admin</a>
+            </div>
+            
+            <!-- Logout Button with User Info -->
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-500 hidden md:block">
+                    <i class="fa-solid fa-user-circle text-2xl"></i>
+                </span>
+                <asp:Label ID="Label1" runat="server" CssClass="text-gray-600 font-medium hidden md:block"></asp:Label>
+                <asp:Button ID="btn_logout" runat="server" Text="Logout" OnClick="btn_logout_Click" CssClass="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-red-600 transition-colors duration-200" />
+            </div>
+        </header>
 
-<asp:ContentPlaceHolder ID="head" runat="server">
-</asp:ContentPlaceHolder>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <header>
-                <h2>Student Result Management System</h2>
+        <!-- Main Content Area with Sidebar -->
+        <div class="flex flex-1 relative">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="w-64 bg-gray-800 text-white shadow-lg overflow-y-auto transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out absolute md:relative h-full z-40">
+                <ul class="p-4 space-y-2">
+                    <li class="group">
+                        <a href="dashboard.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-gauge w-5"></i>
+                            <span class="font-medium">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="CreateStream.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-book-open-reader w-5"></i>
+                            <span class="font-medium">Create Stream</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="ManageStream.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-list-check w-5"></i>
+                            <span class="font-medium">Manage Stream</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="CreateSubject.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-plus-square w-5"></i>
+                            <span class="font-medium">Create Subject</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="ManageSub.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-edit w-5"></i>
+                            <span class="font-medium">Manage Subject</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="Subjectcomb.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-folder-plus w-5"></i>
+                            <span class="font-medium">Add Subject Combination</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="ManageComb.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-clipboard-list w-5"></i>
+                            <span class="font-medium">Manage Subject Combination</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="addteststud.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-user-plus w-5"></i>
+                            <span class="font-medium">Add Student</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="manageteststud.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-users w-5"></i>
+                            <span class="font-medium">Manage Student</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="Res1.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-file-circle-plus w-5"></i>
+                            <span class="font-medium">Add Result</span>
+                        </a>
+                    </li>
+                    <li class="group">
+                        <a href="ManageResult.aspx" class="flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200">
+                            <i class="fa-solid fa-file-lines w-5"></i>
+                            <span class="font-medium">Student Result List</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
-                <span><i class='fa fa-sign-out' style='font-size: 24px; color: red; margin-left:87%;margin-bottom:2%;'></i>
-                    <asp:Button ID="btn_logout" runat="server" OnClick="btn_logout_Click" Text="Logout" />
-                  <%--  <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Logout</asp:LinkButton>--%>
-                    </span>
-
-            </header>
-
-            <section>
-                <nav>
-                    <ul>
-                        <li><a href="dashboard.aspx">Dashboard</a></li>
-                        <li><a href="CreateStream.aspx">Create Stream</a></li>
-                        <li><a href="ManageStream.aspx">Manage Stream</a></li>
-                        <li><a href="CreateSubject.aspx">Create Subject</a></li>
-                        <li><a href="ManageSub.aspx">Manage Subject</a></li>
-                        <li><a href="Subjectcomb.aspx">Add Subject Combination</a></li>
-                        <li><a href="ManageComb.aspx">Manage Subject Combination</a></li>
-                        <%--<li><a href="addstudent.aspx">add student</a></li>--%>
-                        <li><a href="addteststud.aspx">Add Student</a></li>
-                        <li><a href="manageteststud.aspx">Manage Student</a></li>
-                        <%--<li><a href="ManageStudent.aspx">Manage Student</a></li>--%>
-                        <li><a href="Res1.aspx">Add Result</a></li>
-                        <li><a href="ManageResult.aspx">Student Result List</a></li>
-                        <%--<li><a href="TestRes1b.aspx">test Result</a></li>--%>
-                        <%--<li><a href="#">Change Admin Password</a></li>--%>
-                    </ul>
-                </nav>
-                <article>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
-                </article>
-            </section>
-
-
-            <footer>
-                <p>
-                    © 2023 Copyright by SRMS. All Rights Reserved.
-                </p>
-            </footer>
-
-
-
-
-
-
-
+            <!-- Main Content Placeholder -->
+            <main id="main-content" class="flex-1 p-8 overflow-y-auto">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
         </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white text-center p-4">
+            <p class="text-sm">© 2024 Copyright by SRMS. All Rights Reserved.</p>
+        </footer>
     </form>
+
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+        const mainContent = document.getElementById('main-content');
+        
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+            // This is a simple toggle. For a more sophisticated layout, you might want to adjust mainContent's margin.
+        });
+    </script>
 </body>
 </html>

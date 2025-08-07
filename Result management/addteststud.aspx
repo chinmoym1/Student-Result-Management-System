@@ -1,126 +1,68 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="addteststud.aspx.cs" Inherits="Result_management.addteststud" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-      <style type="text/css">
-        .style1 {
-            background-color: #a29da6;
-            width: 80%;
-            height: 50%;
-        }
-
-        #ContentPlaceHolder1_DropDownList1 {
-            width: 19%;
-            margin-left: 48px;
-        }
-
-        #ContentPlaceHolder1_DropDownList2 {
-            width: 19%;
-            margin-left: 48px;
-        }
-
-        #ContentPlaceHolder1_TextBox1 {
-            margin-left: 45px;
-        }
-
-        #ContentPlaceHolder1_TextBox3 {
-            margin-left: 65px;
-        }
-
-        #ContentPlaceHolder1_Label2 {
-            margin-left: 30%;
-            font-weight: bold;
-        }
-
-        #ContentPlaceHolder1_Label3 {
-            margin-left: 30%;
-            font-weight: bold;
-        }
-
-        #ContentPlaceHolder1_Label4 {
-            margin-left: 30%;
-            font-weight: bold;
-        }
-
-        #ContentPlaceHolder1_Label5 {
-            margin-left: 30%;
-            font-weight: bold;
-        }
-
-        #ContentPlaceHolder1_Button1 {
-            margin-left: 42%;
-        }
-
-        #ContentPlaceHolder1_datepicker {
-            margin-left: 8%;
-        }
-    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    
     <script type="text/javascript">
-
         $(function () {
-            $('#<%= datepicker.ClientID %>').datepicker();
-
-     });
-
+            $('#<%= datepicker.ClientID %>').datepicker({
+                dateFormat: "dd/mm/yy",
+                // Added new options to allow month and year selection
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0" // Allows years from 100 years ago to the current year
+            });
+        });
     </script>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="flex items-center justify-center py-16">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg space-y-6">
+            <!-- Form Heading -->
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-teal-800">Add Student Details</h2>
+                <p class="text-gray-600 mt-2">Fill out the form below to add a new student.</p>
+            </div>
+            
+            <!-- Form Fields -->
+            <div class="space-y-4">
+                <!-- Student Name Input -->
+                <div>
+                    <asp:Label ID="Label2" runat="server" Text="Student Name" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:TextBox ID="TextBox2" runat="server" Required="true" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200" placeholder="Student's Full Name"></asp:TextBox>
+                </div>
+                
+                <!-- Gender Dropdown -->
+                <div>
+                    <asp:Label ID="Label3" runat="server" Text="Gender" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" Required="true" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200 bg-white">
+                        <asp:ListItem Value="0">Select Gender</asp:ListItem>
+                        <asp:ListItem Value="Male">Male</asp:ListItem>
+                        <asp:ListItem Value="Female">Female</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
 
-     <center>
-        <h2>Add Student Details</h2>
-    </center>
-    <br />
-    <table class="style1" align="center">
+                <!-- DOB Input with Datepicker -->
+                <div>
+                    <asp:Label ID="Label4" runat="server" Text="Date of Birth" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:TextBox ID="datepicker" runat="server" placeholder="dd/mm/yyyy" Required="true" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200"></asp:TextBox>
+                </div>
 
-        <%-- <tr>
-            <td>
-                <asp:Label ID="Label1" runat="server" Text="Roll No."></asp:Label>
-                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-            </td>
-        </tr>--%>
-        <tr>
-            <td>
-                <asp:Label ID="Label2" runat="server" Text="Student Name"></asp:Label>
-                <asp:TextBox ID="TextBox2" runat="server" Required="true"></asp:TextBox>
-                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="TextBox2" runat="server" ErrorMessage="*Required Field" ForeColor="Red"></asp:RequiredFieldValidator>--%>
-            </td>
-        </tr>
+                <!-- Stream Dropdown -->
+                <div>
+                    <asp:Label ID="Label5" runat="server" Text="Stream" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:DropDownList ID="DropDownList2" runat="server" Required="true" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200 bg-white">
+                    </asp:DropDownList>
+                </div>
+            </div>
 
-        <tr>
-            <td>
-                <asp:Label ID="Label3" runat="server" Text="Gender"></asp:Label>
-                <asp:DropDownList ID="DropDownList1" runat="server" Required="true">
-                    <asp:ListItem Value="0">Select</asp:ListItem>
-                    <asp:ListItem Value="Male">Male</asp:ListItem>
-                    <asp:ListItem Value="Female">Female</asp:ListItem>
-
-                    
-                </asp:DropDownList>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <asp:Label ID="Label4" runat="server" Text="DOB"></asp:Label>
-                <asp:TextBox ID="datepicker" runat="server" placeholder="mm/dd/yyyy" Required="true"></asp:TextBox>
-
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <asp:Label ID="Label5" runat="server" Text="Stream"></asp:Label>
-                <asp:DropDownList ID="DropDownList2" runat="server" Required="true"></asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Button ID="Button1" runat="server" Text="Submit" BackColor="#3399FF" Font-Bold="True" OnClick="Button1_Click" />
-            </td>
-        </tr>
-
-
-    </table>
-    <script type="text/javascript">
-        $('#<%= System.IO.Path.GetFileNameWithoutExtension(System.Web.HttpContext.Current.Request.Url.AbsolutePath).ToLower()%>').addClass("active");
-    </script>
-
+            <!-- Submit Button -->
+            <div>
+                <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" CssClass="w-full bg-teal-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
+            </div>
+        </div>
+    </div>
 </asp:Content>

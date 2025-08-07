@@ -1,156 +1,99 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="TestRes1b.aspx.cs" Inherits="Result_management.TestRes1b" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        #ContentPlaceHolder1_DropDownList1 {
-            width: 130px;
-        }
-        #ContentPlaceHolder1_DropDownList2 {
-            width: 130px;
-        }
-        #ContentPlaceHolder1_Label2 {
-            margin-left: 45px;
-        }
-        table{
-            width:100%;
-        }
-        table{
-            font-family:Arial,sans-serif;
-            border-collapse:collapse;
-            width:100%;
-        }
-        td,th{
-            border: 1px solid #000000;
-            text-align:left;
-            padding:8px;
-        }
-        tr:nth-child(even){
-            background-color:#dddddd;
-        }
-        th{
-            background-color:#7d2f58f0;
-            color:white;
-        }
-
-        #ContentPlaceHolder1_Button1 {
-            width: 60px;
-           
-            font-size: 15px;
-            font-weight: bold;
-            /*! border-block-color: #dfa827; */
-            /*! border-block-start: #237393; */
-            /*! border-block-start-color: aquamarine; */
-            border-color:darkslategray;
-        }
-        #ContentPlaceHolder1_Button2 {
-            width: 60px;
-            color: #3a10d0;
-            font-size: 15px;
-            font-weight: bold;
-            /*! border-block-color: #dfa827; */
-            /*! border-block-start: #237393; */
-            /*! border-block-start-color: aquamarine; */
-            border-color: #d0aa7b;
-        }
-
-
-    </style>
+    <!-- No custom styles needed here, as Tailwind CSS handles the design -->
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Add Marks</h2>
-    <table>
-               <tr>
-                   <th>Semester</th>
-                   <th>Student Name</th>
-               </tr>
-            <tr>
-                <td>
-                   <%-- <asp:Label ID="Label1" runat="server" Text="Semester"></asp:Label>--%>
-                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
-                </td>
-                <td>
-                 <%--   <asp:Label ID="Label2" runat="server" Text="Student Name"></asp:Label>--%>
-                    <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged"></asp:DropDownList>
-                </td>
-            </tr>
-        
-    </table>
-    <asp:Panel ID="Panel1" runat="server">
-            <table>
-                <tr>
-                    <th>Subject Name</th>
-                    <th>Marks</th>
-                    
-                    
+    <div class="flex items-center justify-center py-16">
+        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-4xl space-y-6">
+            <!-- Page Heading -->
+            <div class="text-center">
+                <h2 class="text-3xl font-extrabold text-teal-800">Add Marks</h2>
+                <p class="text-gray-600 mt-2">Select a semester and student to enter their marks.</p>
+            </div>
 
-                </tr>
-                <tr>
-                    <td>Roll No</td>
-                    <td>
-                        <asp:TextBox ID="TextBox1" runat="server" Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
-                        <asp:Button ID="Button3" runat="server" Text="Check Rollno" Font-Bold="True" ForeColor="#0099CC" BorderStyle="Solid" BorderColor="#666633" OnClick="Button3_Click" />
-                    </td>
-                     
-                    
-                </tr>
-                <tr>
-                    <td>Name</td>
-                     <td><asp:TextBox ID="TextBox2" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                     
-                    
-                </tr>
-                <tr>
-                    <td>Stream</td>
-                    <td><asp:TextBox ID="TextBox3" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                    
-                    
-                </tr>
-                 <tr>
-                    <td>Core-I:Programming Fundamentals using C/C++</td>
-                    <td><asp:TextBox ID="TextBox4" runat="server" Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                    
-                    
-                    
-                </tr>
-                 <tr>
-                    <td>Core-II:Computer System Architecture</td>
-                    <td><asp:TextBox ID="TextBox5" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                   
-                   
-                    
-                </tr>
-                 <tr>
-                    <td>AECC-1:Environmental Science</td>
-                   <td><asp:TextBox ID="TextBox6" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                     
-                  
-                  
-                </tr>
-                 <tr>
-                     <td>GE-1:General Elective</td>
-                     <td><asp:TextBox ID="TextBox7" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                    
-                   
-                </tr>
-                <tr>
-                    <td>Total Marks</td>
-                    <td><asp:TextBox ID="TextBox8" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox>
-                        <asp:Button ID="Button1" runat="server" Text="Add" OnClick="Button1_Click" /></td>
-                    
-                </tr>
-                <tr>
-                    <td>Percentage</td>
-                     <td><asp:TextBox ID="TextBox9" runat="server"  Font-Bold="True" ForeColor="Black" BorderStyle="Solid" BorderColor="#32AAAA" Font-Size="Medium"></asp:TextBox></td>
-                     
-                </tr>
-                <tr >
-                    <td></td>
-                    <td >
-                        <asp:Button ID="Button2" runat="server" Text="Submit" OnClick="Button2_Click" /></td>
-                    
-                    
-                </tr>
-               
+            <!-- Selection Dropdowns -->
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
+                <!-- Semester Dropdown -->
+                <div>
+                    <asp:Label ID="Label1" runat="server" Text="Semester" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:DropDownList ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True" CssClass="w-full sm:w-48 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200 bg-white"></asp:DropDownList>
+                </div>
+                
+                <!-- Student Dropdown -->
+                <div>
+                    <asp:Label ID="Label2" runat="server" Text="Student Name" CssClass="block text-sm font-medium text-gray-700 mb-1"></asp:Label>
+                    <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged" CssClass="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200 bg-white"></asp:DropDownList>
+                </div>
+            </div>
 
-            </table>
-    </asp:Panel>
+            <!-- Panel for Entering Marks -->
+            <asp:Panel ID="Panel1" runat="server" CssClass="bg-gray-50 p-6 rounded-xl shadow-inner mt-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+                    <!-- Read-only student info -->
+                    <div class="space-y-4 col-span-full">
+                        <div class="flex items-center">
+                            <label class="block text-sm font-semibold text-gray-700 w-1/4">Roll No:</label>
+                            <asp:TextBox ID="TextBox1" runat="server" Font-Bold="True" ForeColor="Black" ReadOnly="True" CssClass="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:outline-none"></asp:TextBox>
+                            <asp:Button ID="Button3" runat="server" Text="Check Rollno" Font-Bold="True" OnClick="Button3_Click" CssClass="ml-4 bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 transition-colors duration-200" />
+                        </div>
+                        <div class="flex items-center">
+                            <label class="block text-sm font-semibold text-gray-700 w-1/4">Name:</label>
+                            <asp:TextBox ID="TextBox2" runat="server" Font-Bold="True" ForeColor="Black" ReadOnly="True" CssClass="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:outline-none"></asp:TextBox>
+                        </div>
+                        <div class="flex items-center">
+                            <label class="block text-sm font-semibold text-gray-700 w-1/4">Stream:</label>
+                            <asp:TextBox ID="TextBox3" runat="server" Font-Bold="True" ForeColor="Black" ReadOnly="True" CssClass="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:outline-none"></asp:TextBox>
+                        </div>
+                    </div>
+                    
+                    <!-- Marks Entry -->
+                    <div class="space-y-4 col-span-full mt-8">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Enter Subject Marks</h3>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-sm font-semibold text-gray-700">Subject Name</div>
+                            <div class="text-sm font-semibold text-gray-700">Marks</div>
+                        </div>
+
+                        <!-- Example Subject Rows (replace with dynamic content from C#) -->
+                        <div class="grid grid-cols-2 gap-4 items-center">
+                            <label class="text-gray-600">Core-I: Programming Fundamentals</label>
+                            <asp:TextBox ID="TextBox4" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200"></asp:TextBox>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 items-center">
+                            <label class="text-gray-600">Core-II: Computer System Architecture</label>
+                            <asp:TextBox ID="TextBox5" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200"></asp:TextBox>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 items-center">
+                            <label class="text-gray-600">AECC-1: Environmental Science</label>
+                            <asp:TextBox ID="TextBox6" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200"></asp:TextBox>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 items-center">
+                            <label class="text-gray-600">GE-1: General Elective</label>
+                            <asp:TextBox ID="TextBox7" runat="server" CssClass="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors duration-200"></asp:TextBox>
+                        </div>
+                        
+                        <!-- Total and Percentage -->
+                        <div class="space-y-4 pt-6">
+                            <div class="flex items-center">
+                                <label class="block text-sm font-semibold text-gray-700 w-1/4">Total Marks:</label>
+                                <asp:TextBox ID="TextBox8" runat="server" ReadOnly="True" CssClass="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:outline-none"></asp:TextBox>
+                                <asp:Button ID="Button1" runat="server" Text="Calculate" OnClick="Button1_Click" CssClass="ml-4 bg-teal-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-teal-700 transition-colors duration-200" />
+                            </div>
+                            <div class="flex items-center">
+                                <label class="block text-sm font-semibold text-gray-700 w-1/4">Percentage:</label>
+                                <asp:TextBox ID="TextBox9" runat="server" ReadOnly="True" CssClass="flex-1 px-4 py-2 border border-gray-300 rounded-lg bg-gray-200 focus:outline-none"></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-8 text-center">
+                    <asp:Button ID="Button2" runat="server" Text="Submit All" OnClick="Button2_Click" CssClass="bg-green-500 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2" />
+                </div>
+            </asp:Panel>
+        </div>
+    </div>
 </asp:Content>
